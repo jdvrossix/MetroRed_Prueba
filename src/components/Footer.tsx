@@ -1,167 +1,135 @@
-import { LogoIcon } from "./Icons";
+import mrLogo from "../assets/mr_logo.png";
+import emailIcon from "../assets/IconMail.png";
+import phoneIcon from "../assets/IconPhone.png";
+import backgroundTexture from "../assets/textura01.png";
 
 export const Footer = () => {
   return (
-    <footer id="footer">
+    <footer id="footer" className="relative">
       <hr className="w-11/12 mx-auto" />
 
-      <section className="container py-20 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-12 gap-y-8">
-        <div className="col-span-full xl:col-span-2">
-          <a
-            rel="noreferrer noopener"
-            href="/"
-            className="font-bold text-xl flex"
-          >
-            <LogoIcon />
-            ShadcnUI/React
-          </a>
+      {/* Fondo con opacidad */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${backgroundTexture})`,
+          opacity: "0.15",
+        }}
+      ></div>
+
+      <section className="container py-10 grid grid-cols-1 md:grid-cols-5 gap-8">
+        {/* Columna 1: MetroRed Logo */}
+        <div className="flex items-center justify-center md:justify-start xl:justify-start col-span-1">
+          <img src={mrLogo} alt="MetroRed Logo" className="h-8 mr-2" />
         </div>
 
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Follow US</h3>
+        {/* Columna 2: Qué es MetroRed */}
+        <div className="flex flex-col gap-2 md:col-span-1 xl:col-span-1 md:col-start-2 xl:col-start-2">
+          <h3 className="font-bold text-lg">Qué es MetroRed</h3>
           <div>
             <a
               rel="noreferrer noopener"
               href="#"
-              className="opacity-60 hover:opacity-100"
+              className="text-sm opacity-60 hover:opacity-100"
             >
-              Github
+              Cómo Usarla
             </a>
           </div>
-
           <div>
             <a
               rel="noreferrer noopener"
               href="#"
-              className="opacity-60 hover:opacity-100"
+              className="text-sm opacity-60 hover:opacity-100"
             >
-              Twitter
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Dribbble
+              Cuenta MetroRed
             </a>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Platforms</h3>
+        {/* Columna 3: Medios de Pago */}
+        <div className="flex flex-col gap-2 md:col-span-1 xl:col-span-1">
+          <h3 className="font-bold text-lg">Medios de Pago</h3>
           <div>
             <a
               rel="noreferrer noopener"
               href="#"
-              className="opacity-60 hover:opacity-100"
+              className="text-sm opacity-60 hover:opacity-100"
             >
-              Web
+              Tarjetas
             </a>
           </div>
-
           <div>
             <a
               rel="noreferrer noopener"
               href="#"
-              className="opacity-60 hover:opacity-100"
+              className="text-sm opacity-60 hover:opacity-100"
             >
-              Mobile
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Desktop
+              Pago con QR
             </a>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">About</h3>
+        {/* Columna 4: Puntos de Recarga */}
+        <div className="flex flex-col gap-2 md:col-span-1 xl:col-span-1">
+          <h3 className="font-bold text-lg">Puntos de Recarga</h3>
           <div>
             <a
               rel="noreferrer noopener"
               href="#"
-              className="opacity-60 hover:opacity-100"
+              className="text-sm opacity-60 hover:opacity-100"
             >
-              Features
+              Listado de puntos de recargas
             </a>
           </div>
-
           <div>
             <a
               rel="noreferrer noopener"
               href="#"
-              className="opacity-60 hover:opacity-100"
+              className="text-sm opacity-60 hover:opacity-100"
             >
-              Pricing
+              Qué hago si mi recarga no se realizó
             </a>
           </div>
-
           <div>
             <a
               rel="noreferrer noopener"
               href="#"
-              className="opacity-60 hover:opacity-100"
+              className="text-sm opacity-60 hover:opacity-100"
             >
-              FAQ
+              Red de Recargas
             </a>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Community</h3>
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Youtube
-            </a>
+        {/* Columna 5: Contáctanos */}
+        <div className="flex flex-col gap-4 md:col-span-1 xl:col-span-1">
+          <h3 className="font-bold text-lg">Contáctanos</h3>
+          <div className="flex items-center gap-2">
+            <img src={emailIcon} alt="Email Icon" className="h-12" />
+            <div>
+              <p className="text-sm">Correo Electrónico</p>
+              <p className="text-sm font-semibold">metrored@prueba.com</p>
+            </div>
           </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Discord
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Twitch
-            </a>
+          <div className="flex items-center gap-2">
+            <img src={phoneIcon} alt="Phone Icon" className="h-12" />
+            <div>
+              <p className="text-sm">Teléfono</p>
+              <p className="text-sm font-semibold">(+52) 0000000000</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="container pb-14 text-center">
-        <h3>
-          &copy; 2024 Landing page made by{" "}
-          <a
-            rel="noreferrer noopener"
-            target="_blank"
-            href="https://github.com/leoMirandaa"
-            className="text-primary transition-all border-primary hover:border-b-2"
-          >
-            Leo Miranda
-          </a>
-        </h3>
+      {/* Línea separadora horizontal */}
+      <hr className="w-full border-t-1 border-gray-700 my-8" />
+
+      {/* Texto de derechos reservados */}
+      <section className="container pb-6 text-center">
+        <p className="text-sm text-gray-600">
+          Todos los derechos reservados - &copy; 2024 Metrored
+        </p>
+
       </section>
     </footer>
   );

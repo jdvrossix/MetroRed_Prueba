@@ -22,7 +22,7 @@ const features: FeatureProps[] = [
   },
   {
     title: "Lorem ipsum dalaracc lacus",
-    description: "Lorem ipsum dalaracc lacus vel facilisis dolor sit amet consecte tur adipiscing elit semper. Lorem ipsum dalaracc lacus vel facilisis dolor sit amet consecte tur adipiscing elit semper.",
+    description: "Lorem ipsum dolor sit amet consectetur. Egestas amet risus orci id tristique. Sed faucibus eget sed quis varius nam. Proin et condimentum turpis in. Lorem ipsum dolor sit amet consectetur. Egestas amet risus orci id tristique. ",
     image: image,
   },
 ];

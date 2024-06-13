@@ -29,7 +29,7 @@ const features: FeatureProps[] = [
 
 export const QueEsMR = () => {
   return (
-    <section id="queesmr" className="container py-6 sm:py-12">
+    <section id="queesmr" className="container py-6 sm:py-12 space-y-8">
       <h2 className="text-3xl lg:text-4xl font-bold text-center">
         MetroRed
       </h2>

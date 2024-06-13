@@ -1,0 +1,30 @@
+.pagina-container {
+    padding: 0; /* Eliminar cualquier padding */
+    margin: 0; /* Eliminar cualquier margen */
+  }
+  
+  .pagina-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .desktop-image {
+      display: none; /* Ocultar la imagen para escritorio en dispositivos móviles */
+    }
+  
+    .mobile-image {
+      display: block; /* Mostrar la imagen para móviles en dispositivos móviles */
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .mobile-image {
+      display: none; /* Ocultar la imagen para móviles en escritorio */
+    }
+  
+    .desktop-image {
+      display: block; /* Mostrar la imagen para escritorio en dispositivos de escritorio */
+    }
+  }
+  

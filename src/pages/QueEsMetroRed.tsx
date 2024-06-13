@@ -1,4 +1,3 @@
-import React from 'react';
 import { QueEsMR } from '../components/QueEsMR';
 
 

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import React from 'react';
 import styled from 'styled-components';
 import Boreaimg from '../assets/mr_logo.png';
 import TextureOverlay from '../assets/TEXTURA VIxxxxx.png'; // Importa tu textura aquí

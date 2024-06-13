@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import image from "../assets/img_05.png";
 import image3 from "../assets/img_04.png";

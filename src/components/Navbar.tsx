@@ -27,7 +27,7 @@ const routeList: RouteProps[] = [
     ],
   },
   {
-    href: "/medios-pago",
+    href: "#",
     label: "Medios de Pago",
     subpages: [
       { href: "/medios-pago/tarjetas", label: "Tarjetas" },
@@ -35,7 +35,7 @@ const routeList: RouteProps[] = [
     ],
   },
   {
-    href: "/puntos-recarga",
+    href: "#",
     label: "Puntos de Recarga",
     subpages: [
       { href: "/puntos-recarga/listado-puntos", label: "Listado de puntos de recarga" },

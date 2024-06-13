@@ -9,6 +9,12 @@ import QueEsMetroRed from "./pages/QueEsMetroRed";
 import ComoUsarla from "./pages/ComoUsarla";
 import CuentaMetroRed from "./pages/CuentaMetroRed";
 import Tarjetas from "./pages/Tarjetas";
+import PagoQR from "./pages/PagoQR";
+import ListadoPuntos from "./pages/ListadoPuntos";
+import CargaNoRealizada from "./pages/CargaNoRealizada";
+import RedRecargas from "./pages/RedRecargas";
+import Mapa from "./pages/Mapa";
+import BusApp from "./pages/BusApp";
 import Loader from "./components/Loader"; // Importa el componente Loader
 import "./App.css";
 
@@ -37,15 +43,13 @@ function App() {
             <Route path="/que-es-metrored/como-usarla" element={<ComoUsarla />} />
             <Route path="/que-es-metrored/cuenta-metrored" element={<CuentaMetroRed />} />
             <Route path="/medios-pago/tarjetas" element={<Tarjetas />} />
-            {/* 
-       
-       
-        <Route path="/medios-pago/pago-qr" exact component={PagoQR} />
-        <Route path="/puntos-recarga/listado-puntos" exact component={ListadoPuntos} />
-        <Route path="/puntos-recarga/carga-no-realizada" exact component={CargaNoRealizada} />
-        <Route path="/puntos-recarga/red-recargas" exact component={RedRecargas} />
-        <Route path="/mapa" exact component={Mapa} />
-        <Route path="/busapp" exact component={BusApp} /> */}
+            <Route path="/medios-pago/pago-qr" element={<PagoQR />} /> 
+            <Route path="/puntos-recarga/listado-puntos" element={<ListadoPuntos />} />
+            <Route path="/puntos-recarga/carga-no-realizada" element={<CargaNoRealizada />} /> 
+            <Route path="/puntos-recarga/red-recargas" element={<RedRecargas />} /> 
+            <Route path="/mapa" element={<Mapa />} /> 
+            <Route path="/busapp" element={<BusApp />} /> 
+
           </Routes>
           <Footer />
           <ScrollToTop />

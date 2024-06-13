@@ -127,7 +127,7 @@ export const Footer = () => {
       {/* Texto de derechos reservados */}
       <section className="container pb-6 text-center">
         <p className="text-sm text-gray-600">
-          Todos los derechos reservados - &copy; 2024 Metrored
+          Todos los derechos reservados - &copy; 2024 MetroRed
         </p>
 
       </section>

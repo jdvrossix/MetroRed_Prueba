@@ -46,7 +46,7 @@ export const Features = () => {
             className={`${
               index === 0
                 ? "lg:col-span-4 lg:flex-row lg:h-auto"
-                : "lg:col-span-2 lg:h-auto"
+                : "lg:col-span-2 lg:h-80"
             } flex flex-col lg:flex-row`}
           >
             <CardContent className="flex flex-col lg:flex-row lg:items-center p-0">
@@ -80,8 +80,8 @@ export const Features = () => {
                     <img
                       src={image}
                       alt="About feature"
-                      className={`w-full h-full object-cover ${index === 0 ? "lg:h-auto" : ""}`}
-                      style={{ maxHeight: index === 0 ? "250px" : "auto", maxWidth: "100%" }}
+                      className={`w-full h-full object-cover ${index === 0 ? "lg:h-auto" : "h-48 lg:h-auto"}`}
+                      style={{ maxHeight: "317px", maxWidth: "100%" }}
                     />
                   </div>
                   <div className={`lg:w-1/2 ${index % 2 === 0 ? "lg:order-1 lg:pr-8" : "lg:pl-8"} space-y-4 flex flex-col justify-center p-4 lg:p-8`}>

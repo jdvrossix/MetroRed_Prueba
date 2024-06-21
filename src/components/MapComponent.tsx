@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import iconPR from '../assets/mark.png';
@@ -66,6 +65,7 @@ const InfoWindowContent = styled.div`
 interface MarkerType {
   name: string;
   position: google.maps.LatLngLiteral;
+  marker?: google.maps.Marker; // Agregar la propiedad opcional para el marcador de Google Maps
 }
 
 const markersData: MarkerType[] = [
@@ -108,6 +108,9 @@ const MapComponent: React.FC = () => {
         marker.addListener('click', () => {
           handleMarkerClick(markerData, marker);
         });
+
+        // Asignar el marcador de Google Maps al objeto de datos del marcador
+        markerData.marker = marker;
       });
     }
   }, [map]);
@@ -139,7 +142,10 @@ const MapComponent: React.FC = () => {
       map.setCenter(selectedMarker.position);
       map.setZoom(16);
       setSelectedPlace(selectedMarker);
-      handleMarkerClick(selectedMarker, new window.google.maps.Marker({ position: selectedMarker.position, map: map }));
+      // Utilizar el marcador guardado en los datos del marcador
+      if (selectedMarker.marker) {
+        handleMarkerClick(selectedMarker, selectedMarker.marker);
+      }
     }
   };
 

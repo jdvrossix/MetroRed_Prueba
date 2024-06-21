@@ -3,25 +3,23 @@ import styled from 'styled-components';
 import { Status, Wrapper } from '@googlemaps/react-wrapper';
 import MapComponent from './MapComponent';
 
+
 const Container = styled.div`
   width: 100%;
   min-height: calc(80vh - 3rem);
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   font-family: 'Montserrat', sans-serif;
+  margin-bottom: 2rem; /* Agregado el margen inferior */
 `;
 
-const LargeDiv = styled.div`
-  flex: 0 0 75%;
-  max-width: 75%;
-`;
-
-const SmallDiv = styled.div`
-  flex: 0 0 25%;
-  max-width: 25%;
-  background-color: var(--primary-color, #015319);
-  padding-bottom: 3rem;
+const MapWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  max-height: 800px;
+  flex-grow: 1;
 `;
 
 const render = (status: Status) => (<h1>{status}</h1>);
@@ -29,12 +27,11 @@ const render = (status: Status) => (<h1>{status}</h1>);
 const MapContainer: React.FC = () => {
   return (
     <Container>
-      <LargeDiv>
-        <Wrapper apiKey={"AIzaSyB_2eTPjgWn0q8a1FQ8tYXGYUCqSItCqI8 "} render={render}>
+      <MapWrapper>
+        <Wrapper apiKey={"AIzaSyALa6WflYpo5Sa_N3ocYqeCaP66A8h9ZnE"} render={render}>
           <MapComponent />
         </Wrapper>
-      </LargeDiv>
-      <SmallDiv />
+      </MapWrapper>
     </Container>
   );
 };

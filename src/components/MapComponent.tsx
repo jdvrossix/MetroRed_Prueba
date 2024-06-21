@@ -11,6 +11,7 @@ const Container = styled.div`
   justify-content: flex-start;
   height: 100%;
   padding: 1rem;
+  background: #f7f7f7;
 `;
 
 const SelectContainer = styled.div`
@@ -45,13 +46,21 @@ const MapContainer = styled.div`
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
 `;
 
 const InfoWindowContent = styled.div`
   padding: 0.5rem;
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
-  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h5 {
+    margin: 0;
+    text-align: center;
+  }
 `;
 
 interface MarkerType {
@@ -68,7 +77,6 @@ const markersData: MarkerType[] = [
 
 const MapComponent: React.FC = () => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
-  const [_activeMarker, setActiveMarker] = useState<google.maps.Marker | null>(null);
   const [selectedPlace, setSelectedPlace] = useState<MarkerType | null>(null);
   const [infoWindow, setInfoWindow] = useState<google.maps.InfoWindow | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
@@ -100,23 +108,17 @@ const MapComponent: React.FC = () => {
         marker.addListener('click', () => {
           handleMarkerClick(markerData, marker);
         });
-
-        // Open InfoWindow on icon click
-        marker.addListener('iconclick', () => {
-          handleMarkerClick(markerData, marker);
-        });
       });
     }
   }, [map]);
 
   const handleMarkerClick = (markerData: MarkerType, marker: google.maps.Marker) => {
     setSelectedPlace(markerData);
-    setActiveMarker(marker);
-    if (infoWindow && selectedPlace?.position) {
+    if (infoWindow) {
       const content = document.createElement('div');
       ReactDOM.render(
         <InfoWindowContent>
-          <h5>{markerData.name}</h5>
+          <h5>Ubicación {markerData.name}</h5>
         </InfoWindowContent>,
         content
       );
@@ -137,6 +139,7 @@ const MapComponent: React.FC = () => {
       map.setCenter(selectedMarker.position);
       map.setZoom(16);
       setSelectedPlace(selectedMarker);
+      handleMarkerClick(selectedMarker, new window.google.maps.Marker({ position: selectedMarker.position, map: map }));
     }
   };
 

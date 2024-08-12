@@ -2,6 +2,7 @@ import mrLogo from "../assets/mr_logo.png";
 import emailIcon from "../assets/IconMail.png";
 import phoneIcon from "../assets/IconPhone.png";
 import backgroundTexture from "../assets/textura01.png";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -20,29 +21,21 @@ export const Footer = () => {
       <section className="container py-10 grid grid-cols-1 md:grid-cols-5 gap-8">
         {/* Columna 1: MetroRed Logo */}
         <div className="flex items-center justify-center md:justify-start xl:justify-start col-span-1">
-          <img src={mrLogo} alt="MetroRed Logo" className="h-8 mr-2" />
+          <Link to="/">
+            <img src={mrLogo} alt="MetroRed Logo" className="h-8 mr-2" />
+          </Link>
         </div>
 
         {/* Columna 2: Qué es MetroRed */}
         <div className="flex flex-col gap-2 md:col-span-1 xl:col-span-1 md:col-start-2 xl:col-start-2">
           <h3 className="font-bold text-lg">Qué es MetroRed</h3>
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="text-sm opacity-60 hover:opacity-100"
-            >
-              Cómo Usarla
-            </a>
-          </div>
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="text-sm opacity-60 hover:opacity-100"
+            <Link
+              to="/que-es-metrored/cuenta-metrored"
+              className="text-sm opacity-80 hover:opacity-100"
             >
               Cuenta MetroRed
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -50,22 +43,20 @@ export const Footer = () => {
         <div className="flex flex-col gap-2 md:col-span-1 xl:col-span-1">
           <h3 className="font-bold text-lg">Medios de Pago</h3>
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="text-sm opacity-60 hover:opacity-100"
+            <Link
+              to="/medios-pago/tarjetas"
+              className="text-sm opacity-80 hover:opacity-100"
             >
               Tarjetas
-            </a>
+            </Link>
           </div>
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="text-sm opacity-60 hover:opacity-100"
+            <Link
+              to="/medios-pago/pago-qr"
+              className="text-sm opacity-80 hover:opacity-100"
             >
               Pago con QR
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -73,31 +64,20 @@ export const Footer = () => {
         <div className="flex flex-col gap-2 md:col-span-1 xl:col-span-1">
           <h3 className="font-bold text-lg">Puntos de Recarga</h3>
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="text-sm opacity-60 hover:opacity-100"
+            <Link
+              to="/puntos-recarga/listado-puntos"
+              className="text-sm opacity-80 hover:opacity-100"
             >
               Listado de puntos de recargas
-            </a>
+            </Link>
           </div>
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="text-sm opacity-60 hover:opacity-100"
+            <Link
+              to="/puntos-recarga/carga-no-realizada"
+              className="text-sm opacity-80 hover:opacity-100"
             >
               Qué hago si mi recarga no se realizó
-            </a>
-          </div>
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="text-sm opacity-60 hover:opacity-100"
-            >
-              Red de Recargas
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -108,14 +88,14 @@ export const Footer = () => {
             <img src={emailIcon} alt="Email Icon" className="h-12" />
             <div>
               <p className="text-sm">Correo Electrónico</p>
-              <p className="text-sm font-semibold">metrored@prueba.com</p>
+              <p className="text-sm font-semibold">atención@sctslp.gob.mx</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <img src={phoneIcon} alt="Phone Icon" className="h-12" />
             <div>
               <p className="text-sm">Teléfono</p>
-              <p className="text-sm font-semibold">(+52) 0000000000</p>
+              <p className="text-sm font-semibold">(444) 812.06.77</p>
             </div>
           </div>
         </div>
@@ -129,7 +109,6 @@ export const Footer = () => {
         <p className="text-sm text-gray-600">
           Todos los derechos reservados - &copy; 2024 MetroRed
         </p>
-
       </section>
     </footer>
   );

@@ -65,14 +65,15 @@ const InfoWindowContent = styled.div`
 interface MarkerType {
   name: string;
   position: google.maps.LatLngLiteral;
-  marker?: google.maps.Marker; // Agregar la propiedad opcional para el marcador de Google Maps
+  marker?: google.maps.Marker; 
 }
 
 const markersData: MarkerType[] = [
-  { name: "Punto 1", position: { lat: 22.1565, lng: -100.9855 } },
-  { name: "Punto 2", position: { lat: 22.1575, lng: -100.9865 } },
-  { name: "Punto 3", position: { lat: 22.1585, lng: -100.9845 } },
-  { name: "Punto 4", position: { lat: 22.1555, lng: -100.9875 } },
+  { name: "CETRAM", position: { lat: 22.08193, lng: -100.8782389  } },
+  { name: "Sendero", position: { lat: 22.1290083, lng: -100.9231139} },
+  { name: "CREE", position: { lat: 22.1332972, lng: -100.9295583 } },  
+  { name: "Alameda", position: { lat: 22.1551139, lng: -100.9712861} },
+  { name: "Saucito", position: { lat: 22.1843444, lng: -101.0019611} },
 ];
 
 const MapComponent: React.FC = () => {
@@ -85,7 +86,7 @@ const MapComponent: React.FC = () => {
     if (mapRef.current && !map) {
       const newMap = new window.google.maps.Map(mapRef.current, {
         center: { lat: 22.1565, lng: -100.9855 },
-        zoom: 14,
+        zoom: 12,
       });
       setMap(newMap);
       setInfoWindow(new window.google.maps.InfoWindow());

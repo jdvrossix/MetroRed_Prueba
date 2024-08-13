@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ScrollToTop } from "./components/ScrollToTop";
-import { Hero } from "./components/Hero";
+
 import Inicio from "./pages/Inicio";
 import QueEsMetroRed from "./pages/QueEsMetroRed";
 import ComoUsarla from "./pages/ComoUsarla";
@@ -36,7 +36,7 @@ function App() {
       ) : (
         <>
           <Navbar />
-          <Hero />
+
           <Routes>
             <Route path="/" element={<Inicio />} />
             <Route path="/que-es-metrored" element={<QueEsMetroRed />} />

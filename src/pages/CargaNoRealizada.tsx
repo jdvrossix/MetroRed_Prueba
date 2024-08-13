@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import image from "../assets/img08.png"; 
+import HeroCargaNoRealizada from "../components/HeroNoCarga"; 
 
 const CargaNoRealizada = () => {
   const feature = {
@@ -9,6 +10,9 @@ const CargaNoRealizada = () => {
   };
 
   return (
+    <>
+    <HeroCargaNoRealizada /> 
+  
     <section id="carga-no-realizada" className="container py-6 sm:py-12 space-y-8">
       <h2 className="text-3xl lg:text-4xl font-bold text-center">
         {feature.title}
@@ -36,6 +40,7 @@ const CargaNoRealizada = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

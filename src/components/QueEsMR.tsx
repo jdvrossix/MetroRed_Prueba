@@ -1,5 +1,6 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import image from "../assets/img_05.png"; // Mantén la imagen que quieras utilizar
+import image from "../assets/img_05.png"; 
+import HeroQueEsMR from "./HeroQueEsMR"; 
 
 const feature = {
   title: "Metrored: Una Nueva Forma de Pago en San Luis Potosí",
@@ -9,36 +10,39 @@ const feature = {
 
 export const QueEsMR = () => {
   return (
-    <section id="queesmr" className="container py-6 sm:py-12 space-y-8">
-      <h2 className="text-3xl lg:text-4xl font-bold text-center">
-        MetroRed
-      </h2>
+    <>
+      <HeroQueEsMR /> 
+      <section id="queesmr" className="container py-6 sm:py-12 space-y-8">
+        <h2 className="text-3xl lg:text-4xl font-bold text-center">
+          MetroRed
+        </h2>
 
-      <p className="text-center text-sm md:text-base max-w-2xl mx-auto">
-        Metrored es una revolucionaria modalidad de pago que está transformando el sistema de transporte en San Luis Potosí, haciendo que la movilidad sea más eficiente y moderna.
-      </p>
+        <p className="text-center text-sm md:text-base max-w-2xl mx-auto">
+          Metrored es una revolucionaria modalidad de pago que está transformando el sistema de transporte en San Luis Potosí, haciendo que la movilidad sea más eficiente y moderna.
+        </p>
 
-      <div className="flex flex-wrap justify-center gap-8">
-        <div className="w-full lg:w-2/3">
-          <Card className="flex flex-col lg:flex-row">
-            <CardContent className="lg:w-1/2 p-6 flex flex-col justify-center">
-              <CardTitle className="text-center font-bold text-xl lg:text-2xl">
-                {feature.title}
-              </CardTitle>
-              <p className="text-sm md:text-base text-justify mt-4">
-                {feature.description}
-              </p>
-            </CardContent>
-            <div className="relative lg:w-1/2">
-              <img
-                src={feature.image}
-                alt="Metrored"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </Card>
+        <div className="flex flex-wrap justify-center gap-8">
+          <div className="w-full lg:w-2/3">
+            <Card className="flex flex-col lg:flex-row">
+              <CardContent className="lg:w-1/2 p-6 flex flex-col justify-center">
+                <CardTitle className="text-center font-bold text-xl lg:text-2xl">
+                  {feature.title}
+                </CardTitle>
+                <p className="text-sm md:text-base text-justify mt-4">
+                  {feature.description}
+                </p>
+              </CardContent>
+              <div className="relative lg:w-1/2">
+                <img
+                  src={feature.image}
+                  alt="Metrored"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </Card>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };

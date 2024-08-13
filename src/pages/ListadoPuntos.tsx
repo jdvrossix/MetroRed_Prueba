@@ -1,5 +1,6 @@
 import MapContainer from '../components/MapContainer';
 import styled from 'styled-components';
+import HeroPuntosRecarga from "../components/HeroPuntosRecarga"; 
 
 const PageContainer = styled.div`
   width: 100%;
@@ -24,6 +25,8 @@ const Paragraph = styled.p`
 
 const ListadoPuntos = () => {
   return (
+    <>
+      <HeroPuntosRecarga /> 
     <PageContainer>
       <Title>Listado de Puntos de Recarga</Title>
       <Paragraph>
@@ -31,6 +34,7 @@ const ListadoPuntos = () => {
       </Paragraph>
       <MapContainer />
     </PageContainer>
+    </>
   );
 };
 

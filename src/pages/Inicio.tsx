@@ -1,8 +1,8 @@
-import { Features } from '../components/Features';
+import { Home } from '../components/Home';
 const Inicio = () => {
   return (
     <>
-      <Features />
+      <Home />
     </>
   );
 };

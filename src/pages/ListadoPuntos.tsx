@@ -30,7 +30,7 @@ const ListadoPuntos = () => {
     <PageContainer>
       <Title>Listado de Puntos de Recarga</Title>
       <Paragraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis adipiscing amet lectus non enim in dolor gravida sem. Sit feugiat.
+       Aquí encontrarás los diferentes puntos de recarga disponibles que tenemos para ti.
       </Paragraph>
       <MapContainer />
     </PageContainer>

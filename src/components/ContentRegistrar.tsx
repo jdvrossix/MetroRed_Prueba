@@ -44,10 +44,12 @@ const ContentRegistrar: React.FC = () => {
   const [response, setResponse] = useState<any>(null);
 
   const handleChangeGenero = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedGenero = event.target.value as string;
+    const selectedGenero = event.target.value;
+    const selectedGeneroDesc = event.target.options[event.target.selectedIndex].text;
     setFormData({
       ...formData,
-      genero: selectedGenero,
+      genero: selectedGeneroDesc,
+      tipoGenero: parseInt(selectedGenero, 10),
     });
   
     setErrorMessages({
@@ -55,7 +57,6 @@ const ContentRegistrar: React.FC = () => {
       genero: "",
     });
   };
-
   const handleChangeTipoDoc = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTipoDoc = parseInt(event.target.value);
     setFormData((prevState) => ({
@@ -237,7 +238,7 @@ const ContentRegistrar: React.FC = () => {
                 options={tiposDocumento}
                 onChange={handleChangeTipoDoc}
                 error={errorMessages.tipoDocumento}
-                value={0}
+                value={formData.tipoDocumento} 
                 icon={<FaIdCard  className="icon-centered" />} 
               />
                 </div>
@@ -298,12 +299,12 @@ const ContentRegistrar: React.FC = () => {
                     <FaUser />
                   </span>
                   <SelectorGenero
-                        options={generos}
-                        onChange={handleChangeGenero}
-                        error={errorMessages.genero}
-                        value={formData.genero}
-                        icon={<FaTransgender  className="icon-centered"  />} 
-                         />
+                  options={generos}
+                  onChange={handleChangeGenero}
+                  error={errorMessages.genero}
+                  value={formData.tipoGenero}
+                  icon={<FaTransgender className="icon-centered" />}
+                />
                         </div>
                       </div>
 

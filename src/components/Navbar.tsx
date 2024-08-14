@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@/components/ui/navigation-menu";
@@ -6,8 +5,15 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { buttonVariants } from "./ui/button";
 import { Menu, ChevronDown } from "lucide-react";
 import logo from "../assets/mr_logo.png";
+ 
 
-const routeList = [
+interface Route {
+  href: string;
+  label: string;
+  subpages?: Route[];
+}
+
+const routeList: Route[] = [
   { href: "/", label: "Inicio" },
   {
     href: "/que-es-metrored",
@@ -35,17 +41,13 @@ const routeList = [
   { href: "/busapp", label: "BusApp" },
 ];
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null); // <-- Ajuste aquí
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   const toggleDropdown = (label: string) => {
-    if (openDropdown === label) {
-      setOpenDropdown(null);
-    } else {
-      setOpenDropdown(label);
-    }
+    setOpenDropdown(openDropdown === label ? null : label);
   };
 
   const handleLinkClick = () => {
@@ -54,7 +56,7 @@ const Navbar = () => {
   };
 
   const isActive = (href: string) => location.pathname === href;
-  const isSubpageActive = (subpages: any[]) => subpages && subpages.some((subpage: { href: any; }) => isActive(subpage.href));
+  const isSubpageActive = (subpages?: Route[]) => subpages && subpages.some((subpage) => isActive(subpage.href));
 
   return (
     <header className="sticky top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background transition-all duration-300">
@@ -67,7 +69,6 @@ const Navbar = () => {
             </Link>
           </NavigationMenuItem>
 
-       
           <div className="flex-grow" />
 
           {/* Menu Hamburger for Mobile and Tablet */}
@@ -92,7 +93,7 @@ const Navbar = () => {
                           to={href}
                           onClick={subpages ? () => toggleDropdown(label) : handleLinkClick}
                           className={`${buttonVariants({ variant: "ghost" })} ${
-                            isActive(href) || isSubpageActive(subpages || []) ? "text-[#015319] border-b-2 border-[#015319]" : ""
+                            isActive(href) || isSubpageActive(subpages) ? "text-[#015319] border-b-2 border-[#015319]" : ""
                           }`}
                         >
                           {label}
@@ -103,7 +104,6 @@ const Navbar = () => {
                       </div>
                       {subpages && openDropdown === label && (
                         <div className="pl-4 flex flex-col">
-                          
                           {subpages.map(subpage => (
                             <Link
                               key={subpage.label}
@@ -120,7 +120,7 @@ const Navbar = () => {
                       )}
                     </div>
                   ))}
-                  <Link to="#" className="w-[110px] h-[40px] border rounded-md border-[#E1E4ED] bg-[#F8FAFF] text-[#393939] font-montserrat font-semibold flex items-center justify-center mt-2">
+                  <Link to="/registrate" className="w-[110px] h-[40px] border rounded-md border-[#E1E4ED] bg-[#F8FAFF] text-[#393939] font-montserrat font-semibold flex items-center justify-center">
                     Regístrate
                   </Link>
                   <Link to="https://gea2.busmatick.com" className="w-[130px] h-[40px] rounded-md bg-[#015319] text-[#FFFEFE] font-montserrat font-semibold flex items-center justify-center mt-2">
@@ -132,36 +132,31 @@ const Navbar = () => {
           </span>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex gap-4 items-center flex-grow justify-center mx-auto">
-            {routeList.map((route, i) => (
-              <div key={i} className="relative group">
-                <div className="flex items-center">
-                  <Link
-                    to={route.href}
-                    onClick={() => setOpenDropdown(null)}
-                    className={`text-[17px] ${buttonVariants({ variant: "ghost" })} ${
-                      isActive(route.href) || (route.subpages && isSubpageActive(route.subpages)) ? "text-[#015319] border-b-2 border-[#015319]" : ""
-                    }`}
-                    style={{ marginLeft: i === 0 ? "25px" : "0",  marginRight: route.label === "BusApp" ? "25px" : "0" }} 
-                    
-                  >
-                    {route.label}
-                  </Link>
-                  {route.subpages && (
-                    <ChevronDown
-                      className="ml-2 cursor-pointer h-4 w-4"
-                      onClick={() => toggleDropdown(route.label)}
-                    />
-                  )}
-                </div>
+          <nav className="hidden lg:flex gap-4">
+            {routeList.map((route) => (
+              <div key={route.label} className="relative">
+                <Link
+                  to={route.href}
+                  onClick={route.subpages ? () => toggleDropdown(route.label) : handleLinkClick}
+                  className={`${buttonVariants({ variant: "ghost" })} relative ${
+                    isActive(route.href) || isSubpageActive(route.subpages) ? "text-[#015319] border-b-2 border-[#015319]" : ""
+                  }`}
+                >
+                  {route.label}
+                </Link>
+                {route.subpages && (
+                  <button onClick={() => toggleDropdown(route.label)} className="ml-1">
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+                )}
                 {route.subpages && openDropdown === route.label && (
-                  <div className="absolute left-0 top-full mt-2 flex flex-col bg-white dark:bg-gray-800 border rounded shadow-lg">
-                    {route.subpages.map(subpage => (
+                  <div className="absolute left-0 w-40 mt-2 bg-white border rounded shadow-md">
+                    {route.subpages.map((subpage) => (
                       <Link
                         key={subpage.label}
                         to={subpage.href}
-                        onClick={() => setOpenDropdown(null)}
-                        className={`px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 ${
+                        onClick={handleLinkClick}
+                        className={`${buttonVariants({ variant: "ghost" })} block px-4 py-2 text-sm hover:bg-gray-100 ${
                           isActive(subpage.href) ? "text-[#015319] border-b-2 border-[#015319]" : ""
                         }`}
                       >
@@ -172,20 +167,17 @@ const Navbar = () => {
                 )}
               </div>
             ))}
-          </nav>
-
-          {/* Register and Login Buttons */}
-          <div className="hidden lg:flex gap-2 ml-auto">
-            <div className="flex-grow" /> {/* Espacio flexible para empujar los botones a la derecha */}
-            <Link to="#" className="w-[110px] h-[40px] border rounded-md border-[#E1E4ED] bg-[#F8FAFF] text-[#393939] font-montserrat font-semibold flex items-center justify-center">
+            <Link to="/registrate" className="w-[110px] h-[40px] border rounded-md border-[#E1E4ED] bg-[#F8FAFF] text-[#393939] font-montserrat font-semibold flex items-center justify-center">
               Regístrate
             </Link>
             <Link to="https://gea2.busmatick.com" className="w-[130px] h-[40px] rounded-md bg-[#015319] text-[#FFFEFE] font-montserrat font-semibold flex items-center justify-center">
               Iniciar Sesión
             </Link>
-          </div>
+          </nav>
         </NavigationMenuList>
       </NavigationMenu>
+
+
     </header>
   );
 };

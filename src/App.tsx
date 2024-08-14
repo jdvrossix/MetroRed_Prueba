@@ -15,6 +15,7 @@ import CargaNoRealizada from "./pages/CargaNoRealizada";
 import RedRecargas from "./pages/RedRecargas";
 import Mapa from "./pages/Mapa";
 import BusApp from "./pages/BusApp";
+import ContentRegistrar from "./components/ContentRegistrar";
 import Loader from "./components/Loader"; // Importa el componente Loader
 import "./App.css";
 
@@ -49,6 +50,7 @@ function App() {
             <Route path="/puntos-recarga/red-recargas" element={<RedRecargas />} /> 
             <Route path="/mapa" element={<Mapa />} /> 
             <Route path="/busapp" element={<BusApp />} /> 
+            <Route path="/registrate" element={<ContentRegistrar />} />
 
           </Routes>
           <Footer />

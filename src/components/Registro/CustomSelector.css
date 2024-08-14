@@ -1,0 +1,51 @@
+.custom-form-field {
+  position: relative;
+  margin-bottom: 1rem; 
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px; 
+  font-size: 1.2rem; 
+  color: #555; 
+}
+
+.input-container {
+  position: relative;
+}
+
+.custom-form-field label {
+  font-size: 1rem; 
+  font-weight: bold; 
+  color: #333; 
+  display: block; 
+  text-align: left;
+}
+
+.custom-form-field .form-control {
+  border: 1px solid #ccc; 
+  border-radius: 6px; 
+  padding-left: 2.5rem;
+  font-size: 1rem; 
+  color: #555; 
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.custom-form-field .form-control:focus {
+  outline: none; 
+  border-color: #4d90fe; 
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); 
+}
+
+
+.custom-form-field .error-message {
+  font-size: 0.875rem; 
+  color: #dc3545; 
+  margin-top: 0.25rem; 
+}
+
+.custom-form-field .form-control.error {
+  border-color: red; 
+}

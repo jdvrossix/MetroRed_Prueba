@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import Boreaimg from '../assets/mr_logo.png';
+import LogoMR from '../assets/mr_logo.png';
 import TextureOverlay from '../assets/TEXTURA VIxxxxx.png'; // Importa tu textura aquí
 
 const Container = styled(motion.div)`
@@ -72,8 +72,8 @@ const Loader = () => {
     >
       <Texture /> {/* Textura superpuesta encima del fondo blanco */}
       <LogoImage
-        src={Boreaimg}
-        alt="Borea Loader"
+        src={LogoMR}
+        alt="MetroRed Loader"
         variants={imageVariants}
         initial="hidden"
         animate="visible"

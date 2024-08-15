@@ -30,11 +30,15 @@ const ContentRegistrar: React.FC = () => {
     apellido: "",
     tipoDocumento: "",
     documento: "",
-    tipoGenero: "",
+    tipoGenero:"",
     genero: "",
     fechaNacimiento: "",
     correo: "",
     telefono: "",
+    provincia: "",
+    poblacion: "",
+    direccion: "",
+    aceptaTerminos: "",
   });
 
   const [generos, setGeneros] = useState<{ identificador_TipoGenero: number, descripcion: string }[]>([]);
@@ -86,7 +90,7 @@ const ContentRegistrar: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errors: any = {};
-
+  
     if (formData.nombre.trim().length < 3 || formData.nombre.trim() === "") {
       errors.nombre = "Nombre inválido. Debe tener al menos 3 letras y no puede estar vacío.";
     }
@@ -96,20 +100,20 @@ const ContentRegistrar: React.FC = () => {
     if (formData.tipoDocumento === -1) {
       errors.tipoDocumento = "Debe seleccionar un tipo de documento.";
     }
-
+  
     const documentoRegex = /^[a-zA-Z0-9]{8,18}$/;
     if (!documentoRegex.test(formData.documento.trim())) {
       errors.documento = "Documento inválido. Debe contener solo letras o números (8 a 18 caracteres).";
     }
-
+  
     if (formData.tipoGenero === -1) {
       errors.genero = "Debe seleccionar un género.";
     }
-
+  
     const fechaNacimiento = new Date(formData.fechaNacimiento);
     const fechaActual = new Date();
     const fechaLimite = new Date(1900, 0, 1);
-
+  
     if (formData.fechaNacimiento === "") {
       errors.fechaNacimiento = "Debe seleccionar una fecha de nacimiento.";
     } else if (fechaNacimiento > fechaActual) {
@@ -117,26 +121,26 @@ const ContentRegistrar: React.FC = () => {
     } else if (fechaNacimiento < fechaLimite) {
       errors.fechaNacimiento = "La fecha de nacimiento no puede estar por debajo del año 1900.";
     }
-
+  
     if (formData.correo.trim() === "") {
       errors.correo = "Correo inválido. No puede estar vacío.";
     }
     if (!/\S+@\S+\.\S+/.test(formData.correo)) {
       errors.correo = "Correo inválido. Debe tener un formato de correo electrónico válido.";
     }
-
+  
     const telefonoRegex = /^\d{9,14}$/;
     if (!telefonoRegex.test(formData.telefono.trim())) {
       errors.telefono = "Número de teléfono inválido. Introduzca solo números. Tamaño: [9-14].";
     }
-
+  
     if (Object.keys(errors).length > 0) {
       setErrorMessages(errors);
       return;
     }
-
+  
     setLoading(true);
-
+  
     try {
       const data = {
         identificador_Cliente: 0,
@@ -146,6 +150,9 @@ const ContentRegistrar: React.FC = () => {
         identificador_TipoDocumentoIdentificativo: formData.tipoDocumento,
         correoElectronico_Cliente: formData.correo.toUpperCase(),
         numeroMovil_Cliente: formData.telefono,
+        poblacion_Cliente: "",//formData.poblacion.toUpperCase(),
+        direccion_Cliente: "",//formData.direccion.toUpperCase(),
+        provincia_Cliente: "",//formData.provincia.toUpperCase(),
         fecha_Nacimiento_Cliente: formData.fechaNacimiento,
         imagen_Cliente: "",
         infoExtraJson: "",
@@ -156,14 +163,14 @@ const ContentRegistrar: React.FC = () => {
         descripcion_TipoGenero: formData.tipoGenero,
         saldo_ABT: 0,
       };
-
+  
       const resp = await ApiService.register(data);
       setResponse(resp);
-
+  
       if (resp.isSuccess) {
         setFormData({ ...initialFormData });
       }
-
+  
       setShowModalResp(true);
     } catch (error) {
       console.error("Error al enviar la información:", error);

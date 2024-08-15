@@ -97,7 +97,6 @@ const ContentRegistrar: React.FC = () => {
 
   const handleChangeGenero = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedGenero = event.target.value;
-    const selectedGeneroDesc = event.target.options[event.target.selectedIndex].text;
     setFormData({
       ...formData,
       genero: selectedGenero, // Aquí estás asignando un string a una propiedad que espera un número

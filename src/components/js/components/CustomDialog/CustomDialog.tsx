@@ -8,7 +8,7 @@ interface CustomDialogProps {
   children?: React.ReactNode;
 }
 
-function CustomDialog({ show, handleClose, children }: CustomDialogProps) {
+function CustomDialog({ show, handleClose }: CustomDialogProps) {
   const dialogStyle = {
     display: show ? 'block' : 'none',
     position: 'fixed' as 'fixed', 

@@ -481,6 +481,3 @@ function ContentRegistrar() {
 }
 
 export default ContentRegistrar;
-
-
-// Organizar la GRID

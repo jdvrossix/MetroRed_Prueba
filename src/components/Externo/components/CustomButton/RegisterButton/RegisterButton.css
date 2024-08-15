@@ -1,0 +1,23 @@
+.register-button {
+  background-color: #fff;
+  border: 1px solid #16744f !important; /* Borde del mismo color que el texto inicial */
+  color: #16744f; /* Color del texto */
+  border-radius: 20px !important;
+  transition: border-color 0.3s, color 0.3s; /* Transición suave para el color del borde y del texto */
+}
+
+.register-button:hover {
+  border-color: #de1f25 !important; /* Cambia el color del borde al pasar el cursor */
+  color: #de1f25; /* El color del texto se cambia a #de1f25 */
+  animation: border-color-change 0.3s ease; /* Agrega animación al cambio de color del borde */
+}
+
+/* Animación para el cambio de color del borde */
+@keyframes border-color-change {
+  0% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: #de1f25;
+  }
+}

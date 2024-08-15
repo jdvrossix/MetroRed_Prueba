@@ -25,6 +25,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/components/Registro/.tsx"],
+ "include": ["src/**/*.tsx", "src/**/*.jsx", "src/**/*.ts", "src/**/*.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

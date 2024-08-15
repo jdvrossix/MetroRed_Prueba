@@ -15,8 +15,8 @@ import CargaNoRealizada from "./pages/CargaNoRealizada";
 import RedRecargas from "./pages/RedRecargas";
 import Mapa from "./pages/Mapa";
 import BusApp from "./pages/BusApp";
-import ContentRegistrar from "./components/ContentRegistrar";
-import Loader from "./components/Loader"; // Importa el componente Loader
+import ContentRegistrar from "./pages/ContentRegistrar.jsx";
+import Loader from "./components/Loader"; 
 import "./App.css";
 
 function App() {

@@ -7,8 +7,6 @@ import SelectorGenero from "../components/Registro/CustomSelectorGenero";
 import ModalResp from "../components/Registro/CustomModalResp";
 import ApiService from "../components/Registro/Services/ApiService";
 import '../components/Registro/ContentRegistrar.css';
-
-// Importa los iconos necesarios
 import { FaUser, FaIdCard, FaTransgender, FaEnvelope, FaPhone, FaBirthdayCake } from 'react-icons/fa';
 
 const initialFormData = {
@@ -150,17 +148,17 @@ const ContentRegistrar: React.FC = () => {
         identificador_TipoDocumentoIdentificativo: formData.tipoDocumento,
         correoElectronico_Cliente: formData.correo.toUpperCase(),
         numeroMovil_Cliente: formData.telefono,
-        poblacion_Cliente: "",//formData.poblacion.toUpperCase(),
+        poblacion_Cliente:"", //formData.poblacion.toUpperCase(),
         direccion_Cliente: "",//formData.direccion.toUpperCase(),
-        provincia_Cliente: "",//formData.provincia.toUpperCase(),
+        provincia_Cliente:"",// formData.provincia.toUpperCase(),
         fecha_Nacimiento_Cliente: formData.fechaNacimiento,
         imagen_Cliente: "",
         infoExtraJson: "",
         identificador_TipoEstadoCliente: 0,
         identificador_PerfilCliente: 0,
         fechaCaducidad_PerfilCliente: "2099-12-31",
-        identificador_TipoGenero: formData.genero,
-        descripcion_TipoGenero: formData.tipoGenero,
+        identificador_TipoGenero: formData.tipoGenero,
+        descripcion_TipoGenero: formData.genero,
         saldo_ABT: 0,
       };
   

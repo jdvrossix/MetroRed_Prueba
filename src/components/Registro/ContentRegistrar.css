@@ -58,6 +58,7 @@
 .features-icons .form-group input,
 .features-icons .form-group select {
   padding-left: 35px; /* Espacio para el ícono */
+  padding-right: 15px;
   width: 100%;
   height: 50px; /* Altura consistente */
   border: 1px solid #ced4da;

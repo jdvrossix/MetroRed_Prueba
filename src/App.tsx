@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ScrollToTop } from "./components/ScrollToTop";
-
 import Inicio from "./pages/Inicio";
 import QueEsMetroRed from "./pages/QueEsMetroRed";
 import ComoUsarla from "./pages/ComoUsarla";
@@ -16,7 +15,7 @@ import RedRecargas from "./pages/RedRecargas";
 import Mapa from "./pages/Mapa";
 import BusApp from "./pages/BusApp";
 import ContentRegistrar from "./components/ContentRegistrar";
-import Loader from "./components/Loader"; // Importa el componente Loader
+import Loader from "./components/Loader"; 
 import "./App.css";
 
 function App() {

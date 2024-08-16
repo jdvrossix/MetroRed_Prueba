@@ -148,6 +148,10 @@ const ContentRegistrar: React.FC = () => {
     }
   
     setLoading(true);
+    setShowModalResp(false); // Ocultar el modal mientras se carga
+    setResponse(null); // Resetear el estado de respuesta
+  
+    console.log("Enviando solicitud de registro...");
   
     try {
       const data = {
@@ -158,9 +162,9 @@ const ContentRegistrar: React.FC = () => {
         identificador_TipoDocumentoIdentificativo: formData.tipoDocumento,
         correoElectronico_Cliente: formData.correo.toUpperCase(),
         numeroMovil_Cliente: formData.telefono,
-        poblacion_Cliente:"", //formData.poblacion.toUpperCase(),
-        direccion_Cliente: "",//formData.direccion.toUpperCase(),
-        provincia_Cliente:"",// formData.provincia.toUpperCase(),
+        poblacion_Cliente: "", //formData.poblacion.toUpperCase(),
+        direccion_Cliente: "", //formData.direccion.toUpperCase(),
+        provincia_Cliente: "", //formData.provincia.toUpperCase(),
         fecha_Nacimiento_Cliente: formData.fechaNacimiento,
         imagen_Cliente: "",
         infoExtraJson: "",
@@ -178,13 +182,13 @@ const ContentRegistrar: React.FC = () => {
       if (resp.isSuccess) {
         setFormData({ ...initialFormData });
       }
-  
-      setShowModalResp(true);
+    
+      setShowModalResp(true); // <--- Move this line inside the try block
     } catch (error) {
       console.error("Error al enviar la información:", error);
       const response = { success: false, message: "Error al enviar la información. Por favor, inténtalo de nuevo más tarde." };
       setResponse(response);
-      setShowModalResp(true);
+      setShowModalResp(true); // <--- And keep this line in the catch block
     } finally {
       setLoading(false);
     }
@@ -232,11 +236,13 @@ const ContentRegistrar: React.FC = () => {
   return (
       <div>
       <Modal show={showModal} handleClose={handleCloseModal} />
+      {showModalResp && response && (
       <ModalResp
         show={showModalResp}
         handleClose={handleCloseModalResp}
         response={response}
       />
+    )}
       <section className="features-icons bg-light text-center det-ails">
         <div className="interest-links">
           <h2 style={{ textAlign: 'center' }}>Regístrate</h2>

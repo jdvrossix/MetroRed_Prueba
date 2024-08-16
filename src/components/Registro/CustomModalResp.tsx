@@ -1,24 +1,30 @@
-import React from "react";
+import { useState, useEffect } from 'react';
 import "./CustomModalResp.css";
 
-interface Response {
-  isSuccess: boolean;
-  message: string;
-}
-
-interface CustomModalRespProps {
+interface Props {
   show: boolean;
   handleClose: () => void;
-  response: Response | null;
+  response: {
+    isSuccess: boolean;
+    message: string;
+  };
 }
 
-const CustomModalResp: React.FC<CustomModalRespProps> = ({ show, handleClose, response }) => {
-  if (!response) return null;
+function CustomModalResp({ show, handleClose, response }: Props) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (show) {
+      setIsVisible(true);
+    }
+  }, [show]);
+
+  if (!response || !isVisible) return <div />;
 
   const { isSuccess, message } = response;
-  const showHideClassName = show ? "modal fade show d-block" : "modal fade";
+  const showHideClassName = isVisible ? "modal fade show d-block" : "modal fade";
 
-  return (
+  return  (
     <div
       className={showHideClassName}
       id="exampleModalLong"
@@ -72,6 +78,6 @@ const CustomModalResp: React.FC<CustomModalRespProps> = ({ show, handleClose, re
       </div>
     </div>
   );
-};
+}
 
 export default CustomModalResp;

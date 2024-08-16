@@ -9,7 +9,7 @@ interface SelectorTipoDocProps {
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   error: string;
   value: number;
-  icon: React.ReactNode; // Agregamos la propiedad icon
+  icon: React.ReactNode; 
 }
 
 const SelectorTipoDoc: React.FC<SelectorTipoDocProps> = ({
@@ -20,10 +20,9 @@ const SelectorTipoDoc: React.FC<SelectorTipoDocProps> = ({
   icon,
 }) => {
   return (
-    <div className="input-group">
-      <span className="input-icon">
-        {icon} {/* Renderizamos el icono aquí */}
-      </span>
+    <div className="custom-form-field">
+      <div className="input-container">
+      {icon && <span className="input-icon">{icon}</span>}
       <select
         value={value}
         onChange={onChange}
@@ -35,7 +34,8 @@ const SelectorTipoDoc: React.FC<SelectorTipoDocProps> = ({
           </option>
         ))}
       </select>
-      {error && <div className="invalid-feedback">{error}</div>}
+      </div>
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 };

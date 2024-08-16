@@ -1,47 +1,57 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
-import './CustomFormField.css';
+import React, { useState, InputHTMLAttributes } from "react";
+import "./CustomFormField.css";
 
-interface CustomFormFieldProps {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  name: string;
-  type: string;
-  placeholder: string;
-  error: string;
+interface CustomFormFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  hintText?: string;
+  error?: string;
+  type?: string;
   icon?: React.ReactNode;
-  onBlur?: () => void;
-  containerClassName?: string;
+  onBlurCallback?: (value: string) => Promise<boolean>;
+  errorMessage?: string;
 }
 
 const CustomFormField: React.FC<CustomFormFieldProps> = ({
-  value,
-  onChange,
-  name,
-  type,
-  placeholder,
-  error,
   label,
-  icon, // Agregamos la propiedad icon
+  hintText,
+  error,
+  type = "text",
+  icon,
+  onBlurCallback,
+  errorMessage,
+  ...rest
 }) => {
+  const [internalError, setInternalError] = useState<string | null>(null);
+
+  const handleBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
+    if (onBlurCallback) {
+      const isValid = await onBlurCallback(e.target.value);
+      if (!isValid) {
+        setInternalError(errorMessage || "Invalid value");
+      } else {
+        setInternalError(null);
+      }
+    }
+  };
+
+  const inputClassName = `form-control ${error || internalError ? "error" : ""}`;
+
   return (
-    <div className="form-group">
-      <label htmlFor={name}>{label}</label>
-      <div className="input-group">
-        {icon && (
-          <span className="input-icon">{icon}</span>
-        )}
+    <div className="custom-form-field">
+      <label className="label">{label}</label>
+      <div className="input-container">
         <input
           type={type}
-          name={name}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          className="form-control"
+          className={inputClassName}
+          placeholder={hintText}
+          onBlur={handleBlur}
+          {...rest}
         />
-        {error && <div className="error-message">{error}</div>}
+        {icon && <span className="input-icon">{icon}</span>}
       </div>
+      {error && <small className="error-message">{error}</small>}
+      {internalError && <small className="error-message">{internalError}</small>}
     </div>
   );
 };

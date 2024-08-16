@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
-import Modal from "../components/Registro/Modal";
-import CustomFormField from "../components/Registro/CustomFormField";
-import SelectorTipoDoc from "../components/Registro/CustomSelectorTipoDoc";
-import SelectorGenero from "../components/Registro/CustomSelectorGenero";
-import ModalResp from "../components/Registro/CustomModalResp";
-import ApiService from "../components/Registro/Services/ApiService";
-import '../components/Registro/ContentRegistrar.css';
-import { FaUser, FaIdCard, FaVenusMars, FaEnvelope, FaPhone, FaBirthdayCake } from 'react-icons/fa';
-
+/* import Modal from '../components/Registro/Modal';*/
+import CustomFormField from '../components/Registro/CustomFormField';
+import SelectorTipoDoc from '../components/Registro/CustomSelectorTipoDoc';
+import SelectorGenero from '../components/Registro/CustomSelectorGenero';
+import ModalResp from '../components/Registro/CustomModalResp';
+import ApiService from '../components/Registro/Services/ApiService';
+import "../components/Externo/components/ContentRegistrar.css";
+import { FaUser, FaIdCard, FaTransgender, FaEnvelope, FaPhone, FaBirthdayCake } from 'react-icons/fa';
 const initialFormData = {
   nombre: "",
   apellido: "",
@@ -45,16 +44,7 @@ const ContentRegistrar: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [showModalResp, setShowModalResp] = useState(false);
   const [response, setResponse] = useState<any>(null);
-  const [showModal, setShowModal] = useState(false);
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-  
-  const handleCloseModalResp = () => {
-    setShowModalResp(false);
-    setResponse(null);
-  };
   const handleChangeGenero = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedGenero = event.target.value;
     const selectedGeneroDesc = event.target.options[event.target.selectedIndex].text;
@@ -158,17 +148,17 @@ const ContentRegistrar: React.FC = () => {
         identificador_TipoDocumentoIdentificativo: formData.tipoDocumento,
         correoElectronico_Cliente: formData.correo.toUpperCase(),
         numeroMovil_Cliente: formData.telefono,
-        poblacion_Cliente:"", //formData.poblacion.toUpperCase(),
+        poblacion_Cliente: "",//formData.poblacion.toUpperCase(),
         direccion_Cliente: "",//formData.direccion.toUpperCase(),
-        provincia_Cliente:"",// formData.provincia.toUpperCase(),
+        provincia_Cliente: "",//formData.provincia.toUpperCase(),
         fecha_Nacimiento_Cliente: formData.fechaNacimiento,
         imagen_Cliente: "",
         infoExtraJson: "",
         identificador_TipoEstadoCliente: 0,
         identificador_PerfilCliente: 0,
         fechaCaducidad_PerfilCliente: "2099-12-31",
-        identificador_TipoGenero: formData.tipoGenero,
-        descripcion_TipoGenero: formData.genero,
+        identificador_TipoGenero: formData.genero,
+        descripcion_TipoGenero: formData.tipoGenero,
         saldo_ABT: 0,
       };
   
@@ -230,13 +220,13 @@ const ContentRegistrar: React.FC = () => {
   }, []);
 
   return (
-      <div>
-      <Modal show={showModal} handleClose={handleCloseModal} />
+    <div>
       <ModalResp
         show={showModalResp}
-        handleClose={handleCloseModalResp}
+        onClose={() => setShowModalResp(false)}
         response={response}
       />
+
       <section className="features-icons bg-light text-center det-ails">
         <div className="interest-links">
           <h2 style={{ textAlign: 'center' }}>Regístrate</h2>
@@ -318,7 +308,7 @@ const ContentRegistrar: React.FC = () => {
                   onChange={handleChangeGenero}
                   error={errorMessages.genero}
                   value={formData.tipoGenero}
-                  icon={<FaVenusMars className="icon-centered" />}
+                  icon={<FaTransgender className="icon-centered" />}
                 />
                         </div>
                       </div>

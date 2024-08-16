@@ -132,7 +132,7 @@ const Navbar: React.FC = () => {
           </span>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex gap-4">
+          <nav className="hidden lg:flex gap-5" style={{ marginLeft: '15px' }}>
             {routeList.map((route) => (
               <div key={route.label} className="relative">
                 <Link
@@ -150,7 +150,17 @@ const Navbar: React.FC = () => {
                   </button>
                 )}
                 {route.subpages && openDropdown === route.label && (
-                  <div className="absolute left-0 w-40 mt-2 bg-white border rounded shadow-md">
+                  <div
+                    className="absolute left-0 w-full mt-2 bg-white border rounded shadow-md"
+                    style={{
+                      width: "auto",
+                      minWidth: "200px", 
+                      maxWidth: "none", 
+                      overflowX: "auto", 
+                      overflowY: "auto", 
+                      maxHeight: "300px", 
+                    }}
+                  >
                     {route.subpages.map((subpage) => (
                       <Link
                         key={subpage.label}
@@ -159,6 +169,7 @@ const Navbar: React.FC = () => {
                         className={`${buttonVariants({ variant: "ghost" })} block px-4 py-2 text-sm hover:bg-gray-100 ${
                           isActive(subpage.href) ? "text-[#015319] border-b-2 border-[#015319]" : ""
                         }`}
+                        style={{ width: "100%" }}
                       >
                         {subpage.label}
                       </Link>

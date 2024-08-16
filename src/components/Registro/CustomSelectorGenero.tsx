@@ -1,22 +1,39 @@
-import React, {useState} from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import React, { useState } from 'react';
 import "./CustomSelector.css";
 
-const SelectorGenero = ({ options, error, onChange }) => {
-  const [isOptionDisabled, setIsOptionDisabled] = useState(false);
-  const inputClassName = `form-control ${error ? "error" : ""}`;
-  const icon = <i className="fas fa-venus-mars"></i>;
+interface SelectorGeneroProps {
+  options: any[];
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  error: string;
+  value: number;
+  icon: React.ReactNode;
+}
 
-  const handleOnChange = (e) => {
+const SelectorGenero: React.FC<SelectorGeneroProps> = ({
+  options,
+  onChange,
+  error,
+  value,
+  icon,
+}) => {
+  const [isOptionDisabled, setIsOptionDisabled] = useState(false);
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setIsOptionDisabled(true); // Deshabilitamos la opción nula después de que el usuario haya seleccionado algo
     onChange(e); // Llamamos a la función onChange proporcionada por el padre
   };
 
   return (
     <div className="custom-form-field">
-      <label className="label">Género:</label>
       <div className="input-container">
         {icon && <span className="input-icon">{icon}</span>}
-        <select className={inputClassName} onChange={handleOnChange}>
+        <select
+          value={value}
+          onChange={handleOnChange}
+          className={`form-control ${error ? 'is-invalid' : ''}`}
+        >
           {options.map((option) => (
             <option
               key={option.identificador_TipoGenero}
@@ -32,4 +49,5 @@ const SelectorGenero = ({ options, error, onChange }) => {
     </div>
   );
 };
+
 export default SelectorGenero;

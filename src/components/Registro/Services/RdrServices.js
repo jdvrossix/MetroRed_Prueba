@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-//const path = 'https://desarrollo.busmatick.com:8799/api/';
-const path = 'https://antofagasta.busmatick.com/api/';
+const path = 'https://desarrollo.busmatick.com:8799/api/';
+// const path = 'https://antofagasta.busmatick.com/api/';
 
 const ApiService = {
 

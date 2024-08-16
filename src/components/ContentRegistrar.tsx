@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
+import Modal from "../components/Registro/Modal";
 import CustomFormField from "../components/Registro/CustomFormField";
 import SelectorTipoDoc from "../components/Registro/CustomSelectorTipoDoc";
 import SelectorGenero from "../components/Registro/CustomSelectorGenero";
@@ -44,7 +45,16 @@ const ContentRegistrar: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [showModalResp, setShowModalResp] = useState(false);
   const [response, setResponse] = useState<any>(null);
+  const [showModal, setShowModal] = useState(false);
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  
+  const handleCloseModalResp = () => {
+    setShowModalResp(false);
+    setResponse(null);
+  };
   const handleChangeGenero = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedGenero = event.target.value;
     const selectedGeneroDesc = event.target.options[event.target.selectedIndex].text;
@@ -220,13 +230,13 @@ const ContentRegistrar: React.FC = () => {
   }, []);
 
   return (
-    <div>
+      <div>
+      <Modal show={showModal} handleClose={handleCloseModal} />
       <ModalResp
         show={showModalResp}
-        onClose={() => setShowModalResp(false)}
+        handleClose={handleCloseModalResp}
         response={response}
       />
-
       <section className="features-icons bg-light text-center det-ails">
         <div className="interest-links">
           <h2 style={{ textAlign: 'center' }}>Regístrate</h2>

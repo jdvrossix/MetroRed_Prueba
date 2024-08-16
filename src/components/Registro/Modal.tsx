@@ -1,32 +1,53 @@
 import React from "react";
-import { Modal, Box } from "@mui/material";
+import "./Modal.css";
 
 interface ModalProps {
-  open: boolean;
-  onClose: () => void;
-  children?: React.ReactNode;
+  show: boolean;
+  handleClose: () => void;
 }
 
-const CustomModal: React.FC<ModalProps> = ({ open, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ show, handleClose }) => {
+  const showHideClassName = show ? "modal fade show d-block" : "modal fade";
+
   return (
-    <Modal open={open} onClose={onClose}>
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 400,
-          bgcolor: "background.paper",
-          border: "2px solid #000",
-          boxShadow: 24,
-          p: 4,
-        }}
-      >
-        {children}
-      </Box>
-    </Modal>
+    <div
+      className={showHideClassName}
+      id="exampleModalLong"
+      tabIndex={-1} 
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="exampleModalLongTitle">
+              Modal title
+            </h5>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              onClick={handleClose}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body">...</div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={handleClose}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default CustomModal;
+export default Modal;

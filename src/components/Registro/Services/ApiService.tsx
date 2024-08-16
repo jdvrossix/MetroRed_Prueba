@@ -2,14 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
 
-interface ApiResponse {
-  isSuccess: boolean;
-  message: string;
-  objectResp?: {
-    token: string;
-  };
-}
-
 interface RegisterResponse {
   isSuccess: boolean;
   message: string;

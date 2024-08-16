@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
-import Modal from '../components/Registro/Modal';
+/* import Modal from '../components/Registro/Modal';*/
 import CustomFormField from '../components/Registro/CustomFormField';
 import SelectorTipoDoc from '../components/Registro/CustomSelectorTipoDoc';
 import SelectorGenero from '../components/Registro/CustomSelectorGenero';

@@ -16,7 +16,6 @@ const PagoQR = () => {
           Con esta opción, tus pagos serán más rápidos y seguros, permitiéndote disfrutar de cada viaje sin preocupaciones.
         </p>
 
-        {/* Imagen debajo del título */}
         <div className="flex justify-center">
           <img
             src={qrImage}

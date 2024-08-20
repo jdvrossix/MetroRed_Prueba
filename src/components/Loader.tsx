@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import LogoMR from '../assets/mr_logo.png';
-import TextureOverlay from '../assets/TEXTURA VIxxxxx.png'; // Importa tu textura aquí
+import TextureOverlay from '../assets/TEXTURA VIxxxxx.png'; 
 
 const Container = styled(motion.div)`
   position: fixed;
@@ -14,7 +14,7 @@ const Container = styled(motion.div)`
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  z-index: 9999; /* Asegúrate de que esté encima de todos los elementos */
+  z-index: 9999; 
 `;
 
 const Texture = styled.div`
@@ -23,13 +23,13 @@ const Texture = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${TextureOverlay}); /* Aplica la textura encima del fondo blanco */
-  opacity: 0.1; /* Ajusta la opacidad al 10% */
+  background-image: url(${TextureOverlay}); 
+  opacity: 0.1; 
 `;
 
 const LogoImage = styled(motion.img)`
-  width: 60%; /* Ancho relativo para dispositivos móviles */
-  max-width: 248px; /* Tamaño máximo para evitar que se vea pixelada en pantallas grandes */
+  width: 60%; 
+  max-width: 248px;
   height: auto;
 `;
 
@@ -42,7 +42,7 @@ const Loader = () => {
       opacity: 1,
       transition: {
         delay: 0.5,
-        duration: 0.8, // Reducido el tiempo de animación para mayor fluidez
+        duration: 0.8, 
         ease: 'easeOut',
       },
     },
@@ -58,7 +58,7 @@ const Loader = () => {
       opacity: 1,
       transition: {
         delay: 0.5,
-        duration: 0.8, // Reducido el tiempo de animación para mayor fluidez
+        duration: 0.8, 
         ease: 'easeOut',
       },
     },
@@ -70,7 +70,7 @@ const Loader = () => {
       animate="visible"
       variants={containerVariants}
     >
-      <Texture /> {/* Textura superpuesta encima del fondo blanco */}
+      <Texture /> 
       <LogoImage
         src={LogoMR}
         alt="MetroRed Loader"

@@ -18,8 +18,7 @@ const Title = styled.h2`
 
 const Paragraph = styled.p`
   text-align: center;
-  font-size: 0.875rem; /* Equivalente a text-sm */
-  max-width: 36rem; /* Equivalente a max-w-2xl */
+  font-size: 0.875rem;
   margin-bottom: 2rem;
 `;
 

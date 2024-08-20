@@ -15,7 +15,6 @@ const CuentaMetroRed = () => {
       <HeroCuentaMR /> 
       <div className="pagina-container py-6 sm:py-12">
         <div className="flex flex-col lg:flex-row lg:gap-20 mx-auto max-w-5xl"> 
-          {/* Sección de texto */}
           <div className="lg:w-1/2 p-6 flex flex-col justify-start" style={{ marginTop: '40px', paddingLeft: '20px', paddingRight: '20px' }}>
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-center">
               Cuenta MetroRed
@@ -25,21 +24,19 @@ const CuentaMetroRed = () => {
             </p>
           </div>
 
-          {/* Sección de imágenes para escritorio */}
           <div className="hidden lg:flex lg:w-1/2">
-            <div className="flex flex-col" style={{ marginTop: '5px', marginRight: '20px' }}> {/* Margen derecho para la columna izquierda */}
+            <div className="flex flex-col" style={{ marginTop: '5px', marginRight: '20px' }}> 
               <img src={desktopImage1} alt="Imagen 1" className="w-full h-32 object-cover rounded-lg mb-2" />
               <img src={desktopImage3} alt="Imagen 3" className="w-full h-32 object-cover rounded-lg mb-2" />
               <img src={desktopImage5} alt="Imagen 5" className="w-full h-32 object-cover rounded-lg" />
             </div>
-            <div className="flex flex-col" style={{ marginTop: '50px' }}> {/* Diferente margen superior */}
+            <div className="flex flex-col" style={{ marginTop: '50px' }}> 
               <img src={desktopImage2} alt="Imagen 2" className="w-full h-32 object-cover rounded-lg mb-2" />
               <img src={desktopImage4} alt="Imagen 4" className="w-full h-32 object-cover rounded-lg mb-2" />
               <img src={desktopImage6} alt="Imagen 6" className="w-full h-32 object-cover rounded-lg" />
             </div>
           </div>
 
-          {/* Imagen para dispositivos móviles */}
           <div className="lg:hidden">
             <img src={mobileImage} alt="Imagen para móviles" className="w-full object-cover" />
           </div>

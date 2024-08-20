@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import iconPR from '../assets/mark.png';
@@ -65,22 +66,22 @@ const InfoWindowContent = styled.div`
 interface MarkerType {
   name: string;
   position: google.maps.LatLngLiteral;
-  marker?: google.maps.Marker; 
+  marker?: google.maps.Marker;
 }
-
-const markersData: MarkerType[] = [
-  { name: "CETRAM", position: { lat: 22.08193, lng: -100.8782389  } },
-  { name: "Sendero", position: { lat: 22.1290083, lng: -100.9231139} },
-  { name: "CREE", position: { lat: 22.1332972, lng: -100.9295583 } },  
-  { name: "Alameda", position: { lat: 22.1551139, lng: -100.9712861} },
-  { name: "Saucito", position: { lat: 22.1843444, lng: -101.0019611} },
-];
 
 const MapComponent: React.FC = () => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
+  const [markersData, setMarkersData] = useState<MarkerType[]>([]);
   const [selectedPlace, setSelectedPlace] = useState<MarkerType | null>(null);
   const [infoWindow, setInfoWindow] = useState<google.maps.InfoWindow | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetch('/data/markers.json')
+      .then(response => response.json())
+      .then(data => setMarkersData(data))
+      .catch(error => console.error("Error loading markers:", error));
+  }, []);
 
   useEffect(() => {
     if (mapRef.current && !map) {
@@ -94,7 +95,7 @@ const MapComponent: React.FC = () => {
   }, [map]);
 
   useEffect(() => {
-    if (map) {
+    if (map && markersData.length > 0) {
       markersData.forEach(markerData => {
         const marker = new window.google.maps.Marker({
           position: markerData.position,
@@ -110,11 +111,10 @@ const MapComponent: React.FC = () => {
           handleMarkerClick(markerData, marker);
         });
 
-        // Asignar el marcador de Google Maps al objeto de datos del marcador
         markerData.marker = marker;
       });
     }
-  }, [map]);
+  }, [map, markersData]);
 
   const handleMarkerClick = (markerData: MarkerType, marker: google.maps.Marker) => {
     setSelectedPlace(markerData);
@@ -143,7 +143,6 @@ const MapComponent: React.FC = () => {
       map.setCenter(selectedMarker.position);
       map.setZoom(16);
       setSelectedPlace(selectedMarker);
-      // Utilizar el marcador guardado en los datos del marcador
       if (selectedMarker.marker) {
         handleMarkerClick(selectedMarker, selectedMarker.marker);
       }

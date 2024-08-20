@@ -9,6 +9,8 @@ interface RegisterResponse {
 
 class ApiService {
   private static readonly path: string = 'https://antofagasta.busmatick.com/api/';
+ //private static readonly path: string = 'https://desarrollo.busmatick.com:8799/api/';
+
 
   static async getToken(username: string, password: string, imei: string): Promise<string | null> {
     try {

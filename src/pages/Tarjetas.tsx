@@ -13,11 +13,6 @@ const Tarjetas = () => {
       <p className="text-sm md:text-base text-center max-w-2xl mx-auto">
         Metrored te permite vincular tu tarjeta de transporte con tu usuario, ya sea Citybus, Urbanpass o MiPase. Esta integración ofrece una experiencia de pago más rápida y eficiente, asegurando que puedas gestionar tus viajes de manera sencilla.
       </p>
-
-     
-      
-
-      {/* Imagen debajo del título */}
       <div className="flex justify-center">
         <div className="w-full max-w-md rounded-lg overflow-hidden mb-4">
           <img

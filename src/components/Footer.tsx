@@ -1,10 +1,30 @@
+import { useEffect, useState } from 'react';
 import mrLogo from "../assets/mr_logo.png";
 import emailIcon from "../assets/IconMail.png";
 import phoneIcon from "../assets/IconPhone.png";
 import backgroundTexture from "../assets/textura01.png";
 import { Link } from "react-router-dom";
 
+interface ContactInfo {
+  email: string;
+  phone: string;
+}
+
 export const Footer = () => {
+  const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
+
+  useEffect(() => {
+    fetch('/data/contactInfo.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data: ContactInfo) => setContactInfo(data))
+      .catch((error) => console.error('Error loading contact info:', error));
+  }, []);
+
   return (
     <footer id="footer" className="relative">
       <hr className="w-11/12 mx-auto" />
@@ -84,20 +104,26 @@ export const Footer = () => {
         {/* Columna 5: Contáctanos */}
         <div className="flex flex-col gap-4 md:col-span-1 xl:col-span-1">
           <h3 className="font-bold text-lg">Contáctanos</h3>
-          <div className="flex items-center gap-2">
-            <img src={emailIcon} alt="Email Icon" className="h-12" />
-            <div>
-              <p className="text-sm">Correo Electrónico</p>
-              <p className="text-sm font-semibold">atención@sctslp.gob.mx</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <img src={phoneIcon} alt="Phone Icon" className="h-12" />
-            <div>
-              <p className="text-sm">Teléfono</p>
-              <p className="text-sm font-semibold">(444) 812.06.77</p>
-            </div>
-          </div>
+          {contactInfo ? (
+            <>
+              <div className="flex items-center gap-2">
+                <img src={emailIcon} alt="Email Icon" className="h-12" />
+                <div>
+                  <p className="text-sm">Correo Electrónico</p>
+                  <p className="text-sm font-semibold">{contactInfo.email}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <img src={phoneIcon} alt="Phone Icon" className="h-12" />
+                <div>
+                  <p className="text-sm">Teléfono</p>
+                  <p className="text-sm font-semibold">{contactInfo.phone}</p>
+                </div>
+              </div>
+            </>
+          ) : (
+            <p className="text-sm">Cargando información de contacto...</p>
+          )}
         </div>
       </section>
 

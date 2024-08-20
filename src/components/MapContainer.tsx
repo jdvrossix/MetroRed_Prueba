@@ -6,12 +6,12 @@ import MapComponent from './MapComponent';
 
 const Container = styled.div`
   width: 100%;
-  min-height: calc(80vh - 3rem);
+  min-height: calc(80vh - 2rem);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 2rem; /* Agregado el margen inferior */
+  margin-bottom: 3rem; 
 `;
 
 const MapWrapper = styled.div`

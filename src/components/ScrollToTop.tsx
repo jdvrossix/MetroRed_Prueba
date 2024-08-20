@@ -36,9 +36,9 @@ export const ScrollToTop = () => {
           onClick={goToTop}
           className="fixed bottom-4 right-4 opacity-90 shadow-md"
           size="icon"
-          style={{ backgroundColor: "#015319" }} // Establecer el color de fondo del botón
+          style={{ backgroundColor: "#015319" }} 
         >
-          <ArrowUpToLine className="h-4 w-4 text-white" /> {/* Establecer el color del icono */}
+          <ArrowUpToLine className="h-4 w-4 text-white" /> 
         </Button>
       )}
     </>

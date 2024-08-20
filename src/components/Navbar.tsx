@@ -5,7 +5,6 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { buttonVariants } from "./ui/button";
 import { Menu, ChevronDown } from "lucide-react";
 import logo from "../assets/mr_logo.png";
- 
 
 interface Route {
   href: string;
@@ -31,7 +30,7 @@ const routeList: Route[] = [
     ],
   },
   {
-    href: "/puntos-recarga/listado-puntos",
+    href: "#",
     label: "Puntos de Recarga",
     subpages: [
       { href: "/puntos-recarga/listado-puntos", label: "Listado de puntos de recarga" },
@@ -85,7 +84,7 @@ const Navbar: React.FC = () => {
                   </SheetTitle>
                 </SheetHeader>
 
-                <nav className="flex flex-col items-center gap-2 mt-4">
+                <nav className="flex flex-col items-center gap-2 mt-6">
                   {routeList.map(({ href, label, subpages }) => (
                     <div key={label} className="w-full">
                       <div className="flex justify-between items-center w-full">
@@ -132,12 +131,12 @@ const Navbar: React.FC = () => {
           </span>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex gap-5" style={{ marginLeft: '15px' }}>
+          <nav className="hidden lg:flex gap-5" style={{ marginLeft: '20px' }}>
             {routeList.map((route) => (
               <div key={route.label} className="relative">
                 <Link
                   to={route.href}
-                  onClick={route.subpages ? () => toggleDropdown(route.label) : handleLinkClick}
+                  onClick={handleLinkClick} 
                   className={`${buttonVariants({ variant: "ghost" })} relative ${
                     isActive(route.href) || isSubpageActive(route.subpages) ? "text-[#015319] border-b-2 border-[#015319]" : ""
                   }`}
@@ -187,8 +186,6 @@ const Navbar: React.FC = () => {
           </nav>
         </NavigationMenuList>
       </NavigationMenu>
-
-
     </header>
   );
 };

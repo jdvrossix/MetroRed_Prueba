@@ -52,7 +52,7 @@
   left: 10px; 
   top: 50%; 
   transform: translateY(-50%); 
-  color: #007bff;
+  color: #28a745;
 }
 
 .features-icons .form-group input,
@@ -69,7 +69,7 @@
 
 .features-icons .form-group input:focus,
 .features-icons .form-group select:focus {
-  border-color: #007bff; 
+  border-color: #28a745; 
   outline: none;
 }
 

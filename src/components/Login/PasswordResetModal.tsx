@@ -40,7 +40,7 @@ const PasswordResetModal: React.FC<PasswordResetModalProps> = ({ show, handleClo
       <div className="modal-contentPR">
         <div className="modal-header">
           <h3>Restablecer Contraseña</h3>
-          <button className="close-button" onClick={handleClose}>&times;</button>
+          <button className="close-buttonPR" onClick={handleClose}>&times;</button>
         </div>
         <form onSubmit={handleResetPassword} className="modal-body">
           <input

@@ -95,10 +95,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-button:hover:not(:disabled) {
-  background-color: #218838; 
-}
-
 .row {
   display: flex;
   justify-content: space-between; 

@@ -43,7 +43,8 @@ const ContentRegistrar: React.FC = () => {
   const [tiposDocumento, setTiposDocumento] = useState<{ identificador_TipoDocumentoIdentificativo: number, nombre_TipoDocumentoIdentificativo: string }[]>([]);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
 
   const handleChangeGenero = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -140,7 +141,7 @@ const ContentRegistrar: React.FC = () => {
     }
 
     setLoading(true);
-    setShowSuccessModal(false); 
+    setShowModal(false); 
 
     console.log("Enviando solicitud de registro...");
 
@@ -168,86 +169,84 @@ const ContentRegistrar: React.FC = () => {
       };
 
       const resp = await ApiService.register(data);
+
       if (resp.isSuccess) {
         setFormData({ ...initialFormData });
-        setShowModal(true);
+        setIsSuccess(true);
+        setErrorMessage(""); 
+      } else {
+        setIsSuccess(false);
+        setErrorMessage(resp.message || "Error desconocido al registrar."); 
       }
+      setShowModal(true);
 
-      // ...
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error al enviar la información:", error);
-      // ...
+      setIsSuccess(false);
+      setErrorMessage(error.response?.data?.message || "Ocurrió un error inesperado. Inténtalo de nuevo.");
+      setShowModal(true);
     } finally {
       setLoading(false);
     }
-  };
+};
 
   const handleDocumentBlur = async (value: string) => {
     await ApiService.checkDocumentoDisponible(value);
-    // Manejo de error si no está disponible
     return;
   };
 
   useEffect(() => {
-    const getToken = async (): Promise<void> => {
+    const fetchTokenAndData = async () => {
       try {
-        const token: string | null = await ApiService.getToken(
-          "busapp",
-          "123456",
-          "POS_BUSAPP"
-        );
-        if (token !== null) {
-          const documentos: any[] | null = await ApiService.getDocumentos(token);
-          const generos: any[] | null = await ApiService.getGeneros(token);
+        // Obtener las credenciales desde las variables de entorno
+        const username = import.meta.env.VITE_API_USERNAME;
+        const password = import.meta.env.VITE_API_PASSWORD;
+        const imei = import.meta.env.VITE_API_IMEI;        
 
-          if (documentos !== null && generos !== null) {
-            const documentosConOpcionVacia: { identificador_TipoDocumentoIdentificativo: number, nombre_TipoDocumentoIdentificativo: string }[] = [
+        if (!username || !password || !imei) {
+          throw new Error('Variables de entorno no definidas');
+        }
+
+        const token = await ApiService.getToken(username, password, imei);
+
+        if (token) {
+          const documentos = await ApiService.getDocumentos(token);
+          const generos = await ApiService.getGeneros(token);
+
+          if (documentos) {
+            setTiposDocumento([
               { identificador_TipoDocumentoIdentificativo: -1, nombre_TipoDocumentoIdentificativo: 'Seleccione un tipo de documento' },
               ...documentos,
-            ];
-            setTiposDocumento(documentosConOpcionVacia);
+            ]);
+          }
 
-            const generosConOpcionVacia: { identificador_TipoGenero: number, descripcion: string }[] = [
+          if (generos) {
+            setGeneros([
               { identificador_TipoGenero: -1, descripcion: 'Seleccione un género' },
               ...generos,
-            ];
-            setGeneros(generosConOpcionVacia);
+            ]);
           }
         }
-      } catch (error: any) {
-        console.error("Error:", error);
+      } catch (error) {
+        console.error('Error al obtener el token y los datos:', error);
       }
     };
-    getToken();
+
+    fetchTokenAndData();
   }, []);
+ 
 
   return (
     <div>
     {showModal && (
-      <Modal show={showModal} handleClose={() => setShowModal(false)} />
-    )}      {showSuccessModal && (
-        <div className="modal" style={{ display: "block" }}>
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Registro exitoso!</h5>
-              </div>
-              <div className="modal-body">
-                <p>Gracias por registrarte!</p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => setShowSuccessModal(false)}
-                >
-                  Cerrar
-                </button>
-              </div>
-              </div>
-          </div>
-        </div>
-      )}
+      <Modal 
+      show={showModal} 
+      isSuccess={isSuccess} 
+      handleClose={() => setShowModal(false)} 
+      errorMessage={errorMessage} 
+      className={isSuccess ? "" : "modal-error"} 
+    />
+    )} 
       <section className="features-icons bg-light text-center det-ails">
         <div className="interest-links">
           <h2 style={{ textAlign: 'center' }}>Regístrate</h2>

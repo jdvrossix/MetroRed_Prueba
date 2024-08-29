@@ -12,6 +12,7 @@ import ListadoPuntos from "./pages/ListadoPuntos";
 import CargaNoRealizada from "./pages/CargaNoRealizada";
 import BusApp from "./pages/BusApp";
 import ContentRegistrar from "./components/ContentRegistrar";
+import Login from "./components/Login/Login";
 import Loader from "./components/Loader"; 
 import "./App.css";
 
@@ -44,6 +45,7 @@ function App() {
             <Route path="/puntos-recarga/carga-no-realizada" element={<CargaNoRealizada />} /> 
             <Route path="/busapp" element={<BusApp />} /> 
             <Route path="/registrate" element={<ContentRegistrar />} />
+            <Route path="/login" element={<Login />} />
 
           </Routes>
           <Footer />

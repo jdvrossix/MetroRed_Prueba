@@ -122,7 +122,7 @@ const Navbar: React.FC = () => {
                   <Link to="/registrate" className="w-[110px] h-[40px] border rounded-md border-[#E1E4ED] bg-[#F8FAFF] text-[#393939] font-montserrat font-semibold flex items-center justify-center">
                     Regístrate
                   </Link>
-                  <Link to="https://gea2.busmatick.com" className="w-[130px] h-[40px] rounded-md bg-[#015319] text-[#FFFEFE] font-montserrat font-semibold flex items-center justify-center mt-2">
+                  <Link to="/login" className="w-[130px] h-[40px] rounded-md bg-[#015319] text-[#FFFEFE] font-montserrat font-semibold flex items-center justify-center">
                     Iniciar Sesión
                   </Link>
                 </nav>
@@ -180,9 +180,9 @@ const Navbar: React.FC = () => {
             <Link to="/registrate" className="w-[110px] h-[40px] border rounded-md border-[#E1E4ED] bg-[#F8FAFF] text-[#393939] font-montserrat font-semibold flex items-center justify-center">
               Regístrate
             </Link>
-            <Link to="https://gea2.busmatick.com" className="w-[130px] h-[40px] rounded-md bg-[#015319] text-[#FFFEFE] font-montserrat font-semibold flex items-center justify-center">
-              Iniciar Sesión
-            </Link>
+            <Link to="/login" className="w-[130px] h-[40px] rounded-md bg-[#015319] text-[#FFFEFE] font-montserrat font-semibold flex items-center justify-center">
+            Iniciar Sesión
+          </Link>
           </nav>
         </NavigationMenuList>
       </NavigationMenu>

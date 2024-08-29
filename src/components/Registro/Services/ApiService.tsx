@@ -9,8 +9,7 @@ interface RegisterResponse {
 
 class ApiService {
   private static readonly path: string = 'https://antofagasta.busmatick.com/api/';
- //private static readonly path: string = 'https://desarrollo.busmatick.com:8799/api/';
-
+  // private static readonly path: string = 'https://desarrollo.busmatick.com:8799/api/';
 
   static async getToken(username: string, password: string, imei: string): Promise<string | null> {
     try {
@@ -94,6 +93,23 @@ class ApiService {
     } catch (error) {
       console.error(error);
       return true;
+    }
+  }
+
+  // Nueva función para enviar el enlace de restablecimiento de contraseña
+  static async resetPassword(email: string): Promise<{ isSuccess: boolean; message: string }> {
+    try {
+      const response = await axios.post(ApiService.path + 'Cuentas/Clientes/RestablecerPassword', { email });
+      return {
+        isSuccess: response.data.isSuccess,
+        message: response.data.message || 'Se ha enviado un enlace para restablecer tu contraseña.',
+      };
+    } catch (error) {
+      console.error('Error al enviar el enlace de restablecimiento:', error);
+      return {
+        isSuccess: false,
+        message: 'Error al intentar enviar el enlace de restablecimiento. Inténtalo de nuevo.',
+      };
     }
   }
 }
